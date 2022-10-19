@@ -71,6 +71,12 @@ public class BasicController {
         return "basic/link";
     }
 
+    @GetMapping("/literal")
+    public String literal(Model model) {
+        model.addAttribute("data", "spring!");
+        return "basic/literal";
+    }
+
     @Data
     static class User {
         private String username;
@@ -81,7 +87,6 @@ public class BasicController {
             this.age = age;
         }
     }
-
 
     @Component("helloBean")
     static class HelloBean {
