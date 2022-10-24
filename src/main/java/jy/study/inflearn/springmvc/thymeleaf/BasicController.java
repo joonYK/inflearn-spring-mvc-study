@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
-import java.sql.Array;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -85,7 +84,7 @@ public class BasicController {
     }
 
     @GetMapping("/attribute")
-    public String attribute(Model model) {
+    public String attribute() {
         return "basic/attribute";
     }
 
@@ -105,7 +104,12 @@ public class BasicController {
     public String comments(Model model) {
         model.addAttribute("data", "spring!");
         return "basic/comments";
+    }
 
+    @GetMapping("/block")
+    public String block(Model model) {
+        addUsers(model);
+        return "basic/block";
     }
 
     private void addUsers(Model model) {
