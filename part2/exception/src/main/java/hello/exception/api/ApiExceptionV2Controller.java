@@ -17,29 +17,30 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ApiExceptionV2Controller {
 
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(IllegalArgumentException.class)
-    public ErrorResult illegalExHandler(IllegalArgumentException e) {
-        log.error("[exceptionHandler] ex", e);
-        return new ErrorResult("BAD", e.getMessage());
-    }
-
-    //예외 타입을 지정하지 않고 파라미터의 예외를 사용해서 지정.
-    @ExceptionHandler
-    public ResponseEntity<ErrorResult> userExHandler(UserException e) {
-        log.error("[exceptionHandler] ex", e);
-        ErrorResult errorResult = new ErrorResult("USER-EX", e.getMessage());
-
-        //HTTP 응답 코드를 프로그래밍으로 동적으로 변경 가능
-        return new ResponseEntity<>(errorResult, HttpStatus.NOT_FOUND);
-    }
-
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    @ExceptionHandler
-    public ErrorResult exHandler(Exception e) {
-        log.error("[exceptionHandler] ex", e);
-        return new ErrorResult("EX", "내부 오류");
-    }
+    //ControllerAdvice 에서 처리하도록 수정
+//    @ResponseStatus(HttpStatus.BAD_REQUEST)
+//    @ExceptionHandler(IllegalArgumentException.class)
+//    public ErrorResult illegalExHandler(IllegalArgumentException e) {
+//        log.error("[exceptionHandler] ex", e);
+//        return new ErrorResult("BAD", e.getMessage());
+//    }
+//
+//    //예외 타입을 지정하지 않고 파라미터의 예외를 사용해서 지정.
+//    @ExceptionHandler
+//    public ResponseEntity<ErrorResult> userExHandler(UserException e) {
+//        log.error("[exceptionHandler] ex", e);
+//        ErrorResult errorResult = new ErrorResult("USER-EX", e.getMessage());
+//
+//        //HTTP 응답 코드를 프로그래밍으로 동적으로 변경 가능
+//        return new ResponseEntity<>(errorResult, HttpStatus.NOT_FOUND);
+//    }
+//
+//    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+//    @ExceptionHandler
+//    public ErrorResult exHandler(Exception e) {
+//        log.error("[exceptionHandler] ex", e);
+//        return new ErrorResult("EX", "내부 오류");
+//    }
 
     @GetMapping("/api2/members/{id}")
     public MemberDto getMember(@PathVariable("id") String id) {
