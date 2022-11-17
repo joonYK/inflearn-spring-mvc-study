@@ -7,7 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
 
-@Component //스프링 부트가 제공하는 기본 설정을 사용하도록 하려면 주석 처리.
+//@Component //스프링 부트가 제공하는 기본 설정을 사용하도록 하려면 주석 처리.
 public class WebServerCustomizer implements WebServerFactoryCustomizer<ConfigurableWebServerFactory> {
 
     @Override
