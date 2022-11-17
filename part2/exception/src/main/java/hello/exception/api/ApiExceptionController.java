@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -41,6 +42,12 @@ public class ApiExceptionController {
     public String responseStatusEx2() {
         //@ResponseStatus를 사용하기 힘들때 사용
         throw new ResponseStatusException(HttpStatus.NOT_FOUND, "error.bad", new IllegalArgumentException());
+    }
+
+    @GetMapping("/api/default-handler-ex")
+    public String defaultException(@RequestParam Integer data) {
+        //Integer 타입이 아닌 파라미터로 요청이 들어오면 TypeMismatchException 발생해서 DefaultHandlerExceptionResolver 에서 400 에러로 변경.
+        return "ok";
     }
 
     @Data
